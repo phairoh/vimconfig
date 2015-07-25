@@ -33,7 +33,7 @@ nmap <Leader>u :UndotreeToggle<CR>
 
 " Tab Settings
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
- 
+
 " gui settings
 if has('gui_running')
 	let g:nerdtree_tabs_open_on_gui_startup = 0
