@@ -55,8 +55,8 @@ if has('gui_running')
 else
 	let g:nerdtree_tabs_open_on_console_startup = 0
 	" set backup and swap directories - non gui so i'm probably on osx/linux
-	set backupdir=~/.vim/backup//
-	set dir=~/.vim/swap//
+	set backupdir=~/.vim/tmp/backup//
+	set dir=~/.vim/tmp/swap//
 	" airline settings
 	let g:airline_powerline_fonts = 1
 	colorscheme wombat256
