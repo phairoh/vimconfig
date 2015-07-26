@@ -1,4 +1,5 @@
 let mapleader = ","
+let maplocalleader = "\\"
 
 execute pathogen#infect()
 syntax on
@@ -11,25 +12,30 @@ set hlsearch
 set incsearch
 " Allow buffers to be hidden without saving
 set hidden
+" Line number on current line and relative number elsewhare
+set number relativenumber
 
 " Personal Keybinds
 " Easy navigation between open windows
-nmap <Leader>h <C-W><C-H>
-nmap <Leader>l <C-W><C-L>
-nmap <Leader>j <C-W><C-J>
-nmap <Leader>k <C-W><C-K>
+nnoremap <leader>h <C-W><C-H>
+nnoremap <leader>l <C-W><C-L>
+nnoremap <leader>j <C-W><C-J>
+nnoremap <leader>k <C-W><C-K>
 " Quicker scrolling throw a page
-nmap <C-J> 10j
-nmap <C-K> 10k
-xmap <C-J> 10j
-xmap <C-K> 10k
+nnoremap <c-j> 10j
+nnoremap <c-k> 10k
+xnoremap <c-j> 10j
+xnoremap <c-k> 10k
+" Quickly exit insert mode
+inoremap jk <esc>
+inoremap <esc> <nop>
 " Close current buffer without closing window
-nmap <Leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
+nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
 " NERDtree tabs keymaps
-nmap <Leader>t <plug>NERDTreeTabsToggle<CR>
-nmap <Leader>f <plug>NERDTreeTabsFind<CR>
+nmap <leader>t <plug>NERDTreeTabsToggle<CR>
+nmap <leader>f <plug>NERDTreeTabsFind<CR>
 " Undotree keymaps
-nmap <Leader>u :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 
 " Tab Settings
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
@@ -48,8 +54,8 @@ if has('gui_running')
 		"set gfn=Fira_Mono_Regular_for_Powerline:h10
 		set gfn=Powerline_Consolas:h10
 		" set backup and swap directories
-		set backupdir=~/vimfiles/backup//
-		set dir=~/vimfiles/swap//
+		set backupdir=~/vimfiles/tmp/backup//
+		set dir=~/vimfiles/tmp/swap//
 	endif
 	colorscheme wombat
 else
