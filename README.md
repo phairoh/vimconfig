@@ -1,4 +1,5 @@
 # My Vim Configuration
+> NOTE: This is very much a work in progress!
 
 ## Setup
 ### Unixy Environment
