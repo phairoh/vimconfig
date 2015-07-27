@@ -2,4 +2,4 @@ bundle/
 *.swp
 tmp/
 autoload/
-session/
+sessions/
