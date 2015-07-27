@@ -29,6 +29,9 @@ xnoremap <c-k> 10k
 " Quickly exit insert mode
 inoremap jk <esc>
 inoremap <esc> <nop>
+" Quickly edit and load vimrc
+nnoremap <leader>ev :split $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 " Close current buffer without closing window
 nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
 " NERDtree tabs keymaps
