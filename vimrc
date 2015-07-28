@@ -38,8 +38,15 @@ nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
 nmap <leader>t <plug>NERDTreeTabsToggle<CR>
 nmap <leader>f <plug>NERDTreeTabsFind<CR>
 " Undotree keymaps
-nnoremap <leader>u :UndotreeToggle<CR>
-
+nnoremap <f5> :UndotreeToggle<CR>
+" Unite keymaps
+nnoremap <leader>uu :<c-u>Unite -buffer-name=menu<cr>
+nnoremap <leader>uf :<c-u>Unite -buffer-name=files file<cr>
+nnoremap <leader>uy :<c-u>Unite -buffer-name=yanks history/yank<cr>
+nnoremap <leader>ub :<c-u>Unite -buffer-name=buffers buffer<cr>
+" Unite settings
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+let g:unite_source_history_yank_enable = 1
 " Tab Settings
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
@@ -59,6 +66,8 @@ if has('gui_running')
 		" set backup and swap directories
 		set backupdir=~/vimfiles/tmp/backup//
 		set dir=~/vimfiles/tmp/swap//
+		" Unite settings
+		let g:unite_data_directory = '~/vimfiles/unite'
 	endif
 	colorscheme wombat
 else
@@ -66,12 +75,14 @@ else
 	" set backup and swap directories - non gui so i'm probably on osx/linux
 	set backupdir=~/.vim/tmp/backup//
 	set dir=~/.vim/tmp/swap//
+	" Unite settings
+	let g:unite_data_directory = '~/.vim/unite'
 	" airline settings
 	let g:airline_powerline_fonts = 1
 	colorscheme wombat256
 endif
 
-" airline ctrl-space settings
+" airline settings
 let g:airline_exclude_preview = 1
 let g:airline#extensions#tabline#enabled = 1
 " for some reason this allows for airline to show up even when only 1 window
