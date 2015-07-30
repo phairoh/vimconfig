@@ -29,6 +29,9 @@ xnoremap <c-k> 10k
 " Quickly exit insert mode
 inoremap jk <esc>
 inoremap <esc> <nop>
+" Re-highlight section after indent
+vnoremap > >gv
+vnoremap < <gv
 " Quickly edit and load vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -39,6 +42,9 @@ nmap <leader>t <plug>NERDTreeTabsToggle<CR>
 nmap <leader>f <plug>NERDTreeTabsFind<CR>
 " Undotree keymaps
 nnoremap <f5> :UndotreeToggle<CR>
+" easy-align keymaps
+vmap <enter> <plug>(EasyAlign)
+nmap ga <plug>(EasyAlign)
 " Unite keymaps
 nnoremap <leader>uu :<c-u>Unite -buffer-name=menu<cr>
 nnoremap <leader>uf :<c-u>Unite -buffer-name=files file<cr>
