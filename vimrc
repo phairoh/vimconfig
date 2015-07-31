@@ -10,13 +10,15 @@
 " git clone http://github.com/scrooloose/nerdcommenter
 " git clone http://github.com/jistr/vim-nerdtree-tabs
 " git clone http://github.com/tpope/vim-fugitive
-" git clone http://github.com/Shougo/unite.vim
 " git clone http://github.com/bling/vim-airline
 " git clone http://github.com/mbbill/undotree
 " git clone http://github.com/mattn/emmet-vim
 " git clone http://github.com/Ntpeters/vim-better-whitespace
 " git clone https://github.com/kien/ctrlp.vim
 " https://github.com/junegunn/vim-easy-align
+"
+" TODO: create bash and batch/powershell commands to install and update
+" plugins
 
 let mapleader = ","
 let maplocalleader = "\\"
@@ -74,9 +76,26 @@ nmap ga <plug>(EasyAlign)
 " CtrlP keymaps
 nnoremap ; :CtrlPBuffer<cr>
 " CtrlP Settings
-let g:ctrlp_map = '<leader>f'
+let g:ctrlp_map = '<leader>s'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_custom_ignore = {
+	\'dir': '\v[\/](node_modules|\.svn)$'
+	\}
+" Close currently selected buffer in CtrlP
+let g:ctrlp_buffer_func = {'enter': 'MyCtrlPMappings' }
+func! MyCtrlPMappings()
+	nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
+endfunc
+
+func! s:DeleteBuffer()
+	let line = getline('.')
+	let bufid = line =~ '\[\d\+\*No Name\]$' ? str2nr(matchstr(line, '\d\+'))
+				\ : fnamemodify(line[2:], ':p')
+	exec "bd" bufid
+	exec "norm \<F5>"
+endfunc
+
 " Unite keymaps
 "nnoremap <leader>uu :<c-u>Unite -buffer-name=menu<cr>
 "nnoremap <leader>uf :<c-u>Unite -buffer-name=files file<cr>
