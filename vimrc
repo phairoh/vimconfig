@@ -1,7 +1,46 @@
+" Vundle setup
+" Install vundle
+" git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim
+set nocompatible
+filetype off
+
+if has('gui_running')
+	if has('gui_win32')
+		set rtp+=~/vimfiles/bundle/Vundle.vim
+	else
+		set rtp+=~/.vim/bundle/Vundle.vim
+	endif
+else
+	if has('win32')
+		set rtp+=~/vimfiles/bundle/Vundle.vim
+	else
+		set rtp+=~/.vim/bundle/Vundle.vim
+	endif
+endif
+
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+" https://github.com/junegunn/vim-easy-align
+Plugin 'junegunn/vim-easy-align'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Shougo/unite.vim'
+Plugin 'bling/vim-airline'
+Plugin 'mbbill/undotree'
+Plugin 'mattn/emmet-vim'
+Plugin 'Ntpeters/vim-better-whitespace'
+
+call vundle#end()
+
 let mapleader = ","
 let maplocalleader = "\\"
 
-execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
@@ -35,13 +74,9 @@ vnoremap < <gv
 " Quickly edit and load vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-" Close current buffer without closing window
-nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
 " NERDtree tabs keymaps
 nmap <leader>t <plug>NERDTreeTabsToggle<CR>
 nmap <leader>f <plug>NERDTreeTabsFind<CR>
-" Undotree keymaps
-nnoremap <f5> :UndotreeToggle<CR>
 " easy-align keymaps
 vmap <enter> <plug>(EasyAlign)
 nmap ga <plug>(EasyAlign)
@@ -53,6 +88,8 @@ nnoremap <leader>ub :<c-u>Unite -buffer-name=buffers buffer<cr>
 " Unite settings
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 let g:unite_source_history_yank_enable = 1
+" Undotree keymaps
+nnoremap <f5> :UndotreeToggle<CR>
 " Tab Settings
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
