@@ -15,7 +15,7 @@
 " git clone http://github.com/mbbill/undotree
 " git clone http://github.com/mattn/emmet-vim
 " git clone http://github.com/Ntpeters/vim-better-whitespace
-
+" git clone https://github.com/kien/ctrlp.vim
 " https://github.com/junegunn/vim-easy-align
 
 let mapleader = ","
@@ -30,6 +30,10 @@ filetype plugin indent on
 set hlsearch
 " Turn on incremental search
 set incsearch
+" ignore case in search...
+set ignorecase
+" ... except when using upper case
+set smartcase
 " Allow buffers to be hidden without saving
 set hidden
 " Line number on current line and relative number elsewhare
@@ -49,9 +53,15 @@ xnoremap <c-k> 10k
 " Quickly exit insert mode
 inoremap jk <esc>
 inoremap <esc> <nop>
+" Quickly clear highlighting
+nnoremap <leader>q :nohlsearch<cr>
 " Re-highlight section after indent
 vnoremap > >gv
 vnoremap < <gv
+" Quicky navigate buffers
+nnoremap <c-n> :bnext<cr>
+nnoremap <c-p> :bprev<cr>
+nnoremap <leader>b :b#<cr>
 " Quickly edit and load vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -61,14 +71,20 @@ nmap <leader>f <plug>NERDTreeTabsFind<CR>
 " easy-align keymaps
 vmap <enter> <plug>(EasyAlign)
 nmap ga <plug>(EasyAlign)
+" CtrlP keymaps
+nnoremap ; :CtrlPBuffer<cr>
+" CtrlP Settings
+let g:ctrlp_map = '<leader>f'
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_reversed = 0
 " Unite keymaps
-nnoremap <leader>uu :<c-u>Unite -buffer-name=menu<cr>
-nnoremap <leader>uf :<c-u>Unite -buffer-name=files file<cr>
-nnoremap <leader>uy :<c-u>Unite -buffer-name=yanks history/yank<cr>
-nnoremap <leader>ub :<c-u>Unite -buffer-name=buffers buffer<cr>
-" Unite settings
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-let g:unite_source_history_yank_enable = 1
+"nnoremap <leader>uu :<c-u>Unite -buffer-name=menu<cr>
+"nnoremap <leader>uf :<c-u>Unite -buffer-name=files file<cr>
+"nnoremap <leader>uy :<c-u>Unite -buffer-name=yanks history/yank<cr>
+"nnoremap <leader>ub :<c-u>Unite -buffer-name=buffers buffer<cr>
+"" Unite settings
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"let g:unite_source_history_yank_enable = 1
 " Undotree keymaps
 nnoremap <f5> :UndotreeToggle<CR>
 " Tab Settings
@@ -93,7 +109,7 @@ if has('gui_running')
 		" Unite settings
 		let g:unite_data_directory = '~/vimfiles/unite'
 	endif
-	colorscheme wombat
+	"colorscheme wombat
 else
 	let g:nerdtree_tabs_open_on_console_startup = 0
 	" set backup and swap directories - non gui so i'm probably on osx/linux
@@ -103,9 +119,10 @@ else
 	let g:unite_data_directory = '~/.vim/unite'
 	" airline settings
 	let g:airline_powerline_fonts = 1
-	colorscheme wombat256
+	"colorscheme wombat256
 endif
 
+colorscheme wombat256
 " airline settings
 let g:airline_exclude_preview = 1
 let g:airline#extensions#tabline#enabled = 1
