@@ -1,46 +1,27 @@
-" Vundle setup
-" Install vundle
-" git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim
-set nocompatible
-filetype off
-
-if has('gui_running')
-	if has('gui_win32')
-		set rtp+=~/vimfiles/bundle/Vundle.vim
-	else
-		set rtp+=~/.vim/bundle/Vundle.vim
-	endif
-else
-	if has('win32')
-		set rtp+=~/vimfiles/bundle/Vundle.vim
-	else
-		set rtp+=~/.vim/bundle/Vundle.vim
-	endif
-endif
-
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
+" Install Pathogen
+" mkdir autoload bundle
+" curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim
+"
+" Rrun the following in bundle
+" git clone http://github.com/junegunn/vim-easy-align
+" git clone http://github.com/xolox/vim-misc
+" git clone http://github.com/xolox/vim-session
+" git clone http://github.com/scrooloose/nerdtree
+" git clone http://github.com/scrooloose/nerdcommenter
+" git clone http://github.com/jistr/vim-nerdtree-tabs
+" git clone http://github.com/tpope/vim-fugitive
+" git clone http://github.com/Shougo/unite.vim
+" git clone http://github.com/bling/vim-airline
+" git clone http://github.com/mbbill/undotree
+" git clone http://github.com/mattn/emmet-vim
+" git clone http://github.com/Ntpeters/vim-better-whitespace
 
 " https://github.com/junegunn/vim-easy-align
-Plugin 'junegunn/vim-easy-align'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Shougo/unite.vim'
-Plugin 'bling/vim-airline'
-Plugin 'mbbill/undotree'
-Plugin 'mattn/emmet-vim'
-Plugin 'Ntpeters/vim-better-whitespace'
-
-call vundle#end()
 
 let mapleader = ","
 let maplocalleader = "\\"
 
+execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
