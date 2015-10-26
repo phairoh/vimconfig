@@ -21,7 +21,7 @@ export XDG_CACHE_HOME=$HOME/.cache
 Clone the repository to `$XDG_CONFIG_HOME`.
 
 ```sh
-git clone https://github.com/euclio/vimrc ${XDG_CONFIG_HOME}/vim
+git clone https://github.com/phairoh/vimconfig ${XDG_CONFIG_HOME}/vim
 ```
 
 Set the proper initialization variables.
