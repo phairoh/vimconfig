@@ -94,8 +94,8 @@ nnoremap <f5> :UndotreeToggle<CR>
 
 Plug 'scrooloose/nerdtree'
 
-nmap <leader>t :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
+nmap <silent> <leader>t :NERDTreeToggle<CR>
+nmap <silent> <leader>f :NERDTreeFind<CR>
 
 
 " =============================================================================

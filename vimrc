@@ -31,7 +31,11 @@ endif
 " This sets the viminfo setting.  :h viminfo for more details
 " Not quite sure why we use let &viminfo instead of set viminfo
 let &viminfo="'100,<50,s10,h,n" . viminfodir
-let &viminfo.='/info'
+if has('nvim')
+	let  &viminfo.='/info.shada'
+else
+	let &viminfo.='/info'
+endif
 
 " Store undo history across sessions
 if v:version >= 703
@@ -160,6 +164,11 @@ noremap  <left>  <nop>
 inoremap <left>  <nop>
 noremap  <right> <nop>
 inoremap <right> <nop>
+
+" Press escape to exit terminal
+if has('nvim')
+	tnoremap <Esc> <C-\><C-n>
+endif
 
 " Backspace works as expected across lines
 " Finally!
