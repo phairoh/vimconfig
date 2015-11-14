@@ -38,6 +38,8 @@ Upon starting vim, all plugins should be installed automatically, provided
 I found that I had to sue a :PlugUpdate in order to get plugins installed. Will
 try to figure out why.
 
+As a final step, to get the correct fonts for vim-airlin install the [powerline-fonts](https://github.com/powerline/fonts).
+
 ## Old vimrc
 `oldvimrc` has the old version of my vimrc.  I kept most of my settings in so
 far as my keymaps but I'm also trying out some of euclio's settings to see if I
