@@ -86,7 +86,7 @@ set fileformats=unix,dos,mac
 set textwidth=80 "colorcolumn=+1
 
 " Using my tab settings here but copying reference vimrc to see which i prefer
-set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 "if has('patch-7.3.629')
     "set expandtab tabstop=4 shiftwidth=0 softtabstop=0
 "else
