@@ -113,6 +113,8 @@ Plug 'Ntpeters/vim-better-whitespace'
 
 Plug 'scrooloose/nerdcommenter'
 
+Plug 'benekastah/neomake'
+
 " =============================================================================
 " Languages
 " =============================================================================
@@ -138,6 +140,8 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 
 Plug 'wting/rust.vim', { 'for': 'rust' }
+
+Plug 'fatih/vim-go'
 
 " Filetype plugin for Scala and SBT
 Plug 'derekwyatt/vim-scala', { 'for': ['scala', 'sbt.scala'] }
