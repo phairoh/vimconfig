@@ -62,31 +62,32 @@ let g:airline#extensions#tabline#enabled = 1
 
 Plug 'tpope/vim-fugitive'
 
-Plug 'kien/ctrlp.vim'
+Plug 'majutsushi/tagbar'
 
-" Open buffer list with ;
-nnoremap ; :CtrlPBuffer<cr>
-" Open CtrlP fuzzy finder with <leader>s
-let g:ctrlp_map = '<leader>s'
-" Move CtrlP window to top
-let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_custom_ignore = {
-	\'dir': '\v[\/](node_modules|\.svn)$'
-	\}
-" Close currently selected buffer in CtrlP
-let g:ctrlp_buffer_func = {'enter': 'MyCtrlPMappings' }
-func! MyCtrlPMappings()
-	nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
-endfunc
+nmap <f8> :TagbarToggle<cr>
 
-func! s:DeleteBuffer()
-	let line = getline('.')
-	let bufid = line =~ '\[\d\+\*No Name\]$' ? str2nr(matchstr(line, '\d\+'))
-				\ : fnamemodify(line[2:], ':p')
-	exec "bd" bufid
-	exec "norm \<F5>"
-endfunc
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+let g:fzf_layout = { 'up': '~30%' }
+let g:fzf_command_prefix = 'Fzf'
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+nnoremap ;          :FzfBuffers<cr>
+nnoremap <leader>s  :FzfFiles<cr>
+nnoremap <leader>fs :FzfGitFiles<cr>
+nnoremap <leader>ft :FzfTags<cr>
+nnoremap <leader>fl :FzfLines<cr>
+nnoremap <leader>fw :FzfWindows<cr>
 
 Plug 'mbbill/undotree'
 
@@ -95,7 +96,7 @@ nnoremap <f5> :UndotreeToggle<CR>
 Plug 'scrooloose/nerdtree'
 
 nmap <silent> <leader>t :NERDTreeToggle<CR>
-nmap <silent> <leader>f :NERDTreeFind<CR>
+nmap <silent> <leader>nf :NERDTreeFind<CR>
 
 
 " =============================================================================
@@ -114,6 +115,9 @@ Plug 'Ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdcommenter'
 
 Plug 'benekastah/neomake'
+
+" Run Neomake on buffer write
+autocmd! BufWritePost * Neomake
 
 " =============================================================================
 " Languages
@@ -146,6 +150,8 @@ Plug 'fatih/vim-go'
 " Filetype plugin for Scala and SBT
 Plug 'derekwyatt/vim-scala', { 'for': ['scala', 'sbt.scala'] }
 Plug 'derekwyatt/vim-sbt', { 'for': 'sbt.scala' }
+
+Plug 'elubow/cql-vim'
 
 call plug#end()
 

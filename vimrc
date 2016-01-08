@@ -167,7 +167,7 @@ inoremap <right> <nop>
 
 " Press escape to exit terminal
 if has('nvim')
-	tnoremap <Esc> <C-\><C-n>
+	"tnoremap <Esc> <C-\><C-n>
 endif
 
 " Backspace works as expected across lines
