@@ -55,10 +55,12 @@ call plug#begin(s:plugins)
 " Interface
 " =============================================================================
 "
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline_exclude_preview = 1
 let g:airline#extensions#tabline#enabled = 1
+Plug 'vim-airline/vim-airline-themes'
+
 
 Plug 'tpope/vim-fugitive'
 
