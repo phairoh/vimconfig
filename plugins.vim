@@ -116,6 +116,8 @@ Plug 'scrooloose/nerdcommenter'
 
 Plug 'benekastah/neomake'
 
+Plug 'tpope/vim-surround'
+
 " Run Neomake on buffer write
 autocmd! BufWritePost * Neomake
 
@@ -132,6 +134,8 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 
 " Syntax Highlighting
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+
+Plug 'moll/vim-node'
 
 Plug 'mxw/vim-jsx'
 
