@@ -140,6 +140,8 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'moll/vim-node'
 
 Plug 'mxw/vim-jsx'
+" enable jsx highlighting for js files as well
+let g:jsx_ext_required = 0
 
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
