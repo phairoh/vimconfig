@@ -100,6 +100,8 @@ Plug 'scrooloose/nerdtree'
 nmap <silent> <leader>t :NERDTreeToggle<CR>
 nmap <silent> <leader>nf :NERDTreeFind<CR>
 
+let NERDTreeIgnore = ['\.pyc$']
+
 
 " =============================================================================
 " Features
