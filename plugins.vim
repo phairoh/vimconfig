@@ -149,7 +149,9 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css'] }
+
+Plug 'tpope/vim-haml'
 
 Plug 'groenewege/vim-less', { 'for': 'less' }
 
