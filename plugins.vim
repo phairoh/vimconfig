@@ -130,9 +130,9 @@ autocmd! BufWritePost * Neomake
 " =============================================================================
 
 " JavaScript omnicompletion
-if executable('npm')
-  Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
-endif
+"if executable('npm')
+  "Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
+"endif
 
 Plug 'elzr/vim-json', { 'for': 'json' }
 
@@ -145,25 +145,13 @@ Plug 'mxw/vim-jsx'
 " enable jsx highlighting for js files as well
 let g:jsx_ext_required = 0
 
-Plug 'cespare/vim-toml', { 'for': 'toml' }
-
 Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css'] }
 
 Plug 'tpope/vim-haml'
 
-Plug 'groenewege/vim-less', { 'for': 'less' }
-
-Plug 'wting/rust.vim', { 'for': 'rust' }
-
 Plug 'fatih/vim-go'
-
-" Filetype plugin for Scala and SBT
-Plug 'derekwyatt/vim-scala', { 'for': ['scala', 'sbt.scala'] }
-Plug 'derekwyatt/vim-sbt', { 'for': 'sbt.scala' }
-
-Plug 'elubow/cql-vim'
 
 call plug#end()
 
