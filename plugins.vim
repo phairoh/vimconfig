@@ -129,11 +129,6 @@ autocmd! BufWritePost * Neomake
 " Languages
 " =============================================================================
 
-" JavaScript omnicompletion
-"if executable('npm')
-  "Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
-"endif
-
 Plug 'elzr/vim-json', { 'for': 'json' }
 
 " Syntax Highlighting
