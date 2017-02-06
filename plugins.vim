@@ -142,11 +142,18 @@ let g:jsx_ext_required = 0
 
 Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 
 Plug 'tpope/vim-haml'
 
 Plug 'fatih/vim-go'
+
+Plug 'rust-lang/rust.vim'
+
+Plug 'jparise/vim-graphql'
+
+Plug 'flowtype/vim-flow'
+let g:flow#autoclose = 1
 
 call plug#end()
 
