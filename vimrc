@@ -26,24 +26,24 @@ set directory=$VIMCACHE,$TMP
 " Save viminfo in the data directory
 let viminfodir = $VIMDATA
 if !isdirectory(viminfodir)
-	call mkdir(viminfodir, 'p')
+    call mkdir(viminfodir, 'p')
 endif
 " This sets the viminfo setting.  :h viminfo for more details
 " Not quite sure why we use let &viminfo instead of set viminfo
 let &viminfo="'100,<50,s10,h,n" . viminfodir
 if has('nvim')
-	let  &viminfo.='/info.shada'
+    let  &viminfo.='/info.shada'
 else
-	let &viminfo.='/info'
+    let &viminfo.='/info'
 endif
 
 " Store undo history across sessions
 if v:version >= 703
-	let &undodir=$VIMDATA . '/undodir'
-	if !isdirectory(&undodir)
-		call mkdir(&undodir, 'p')
-	endif
-	set undofile
+    let &undodir=$VIMDATA . '/undodir'
+    if !isdirectory(&undodir)
+        call mkdir(&undodir, 'p')
+    endif
+    set undofile
 endif
 
 " Store netrw history in cache
@@ -57,14 +57,10 @@ let mapleader = ","
 " require the leader inside of plugins
 let maplocalleader = "\\"
 
-" euclio vimrc has stuff here for using the correct shell.  I don't think I
-" need this
-
 " Install plugins.  This uses vim-plug plugin manager
-" Commenting out for now as I continue rest of setting up stuff
 source $VIMHOME/plugins.vim
-" Not sure what this map is for.  Probably something in vim-plug that I need
-" to learn about
+
+" Update plugins
 nnoremap <silent> <leader>pu :PlugUpdate<cr>
 
 " Set filetype specific indentation
@@ -75,39 +71,40 @@ syntax enable
 syntax sync minlines=250
 
 " =============================================================================
+" Functions
+" =============================================================================
+
+function! GenerateUuid()
+    if executable('uuidgen')
+        let l:new_uuid=system('uuidgen | tr "[:upper:]" "[:lower:]" | tr -d "\n"')
+        return l:new_uuid
+    endif
+endfunction
+
+nnoremap <Leader>u i<C-R>=GenerateUuid()<cr><esc>
+
+" =============================================================================
 " File settings
 " =============================================================================
-" Use Unix line endings by default. Maybe I shouldn't use this as I primarily
-" use mac
+" Use Unix line endings by default.
 set fileformats=unix,dos,mac
 
-" Set column width to 80 characters and display a line at the limit. May not
-" like the line
-set textwidth=80 "colorcolumn=+1
+" Set column width to 80 characters
+set textwidth=80
 
-" Using my tab settings here but copying reference vimrc to see which i prefer
+" Set tabs to 4 spaces
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-"if has('patch-7.3.629')
-    "set expandtab tabstop=4 shiftwidth=0 softtabstop=0
-"else
-    "set expandtab tabstop=4 shiftwidth=4 softtabstop=4
-"endif
 
 " Autoformat comments into paragraphs when modifying text.
-" My current options are croql. Will have to see if I like this change or not
-set formatoptions=cqr
-if has('patch-7.3.541')
-	" Join comment leaders automatically
-	set formatoptions+=j
-endif
+" :help fo-table for information on options
+set formatoptions=cqrj
 
 " Assume that .tex files are LaTeX
 " I obviously don't use LaTeX too much... but I'll keep this in in case I choose
 " to do so
 let g:tex_flavor='latex'
 
-" Use one space between sentences. Obviously I tend to use 2 spaces but I'm
-" starting to think that 1 space is better so I'll add this in.
+" Use one space when joining lines
 set nojoinspaces
 
 " Set default dictionary to english
@@ -123,8 +120,8 @@ set number relativenumber
 " I don't use diff mode, but maybe I will?
 " Don't really understand how this works...
 augroup hide_lines
-	autocmd!
-	autocmd FilterWritePre * if &diff | set nonumber norelativenumber | endif
+    autocmd!
+    autocmd FilterWritePre * if &diff | set nonumber norelativenumber | endif
 augroup END
 
 " When leaving buffer, hide it instead of closing it
@@ -142,13 +139,13 @@ set scrolloff=5
 " Will have to test this out to see if I like it
 set list listchars=tab:»·,trail:·,precedes:←,extends:→
 
-" Enable autocomplete menu.  Not sure how this is different from ctrl-n
+" wildmenu is tab completion at the command line
 set wildmenu
 
 " On first tab, complete the longest common command. On second tab, cycle menu
 set wildmode=longest,full
 
-" Files to ignore in autocompletion
+" Files to ignore for wildmenu
 set wildignore=*.o,*.pyc,*.class,*.bak,*~
 
 " =============================================================================
@@ -167,27 +164,24 @@ inoremap <right> <nop>
 
 " Press escape to exit terminal
 if has('nvim')
-	"tnoremap <Esc> <C-\><C-n>
+    "tnoremap <Esc> <C-\><C-n>
 endif
 
 " Backspace works as expected across lines
-" Finally!
 set backspace=indent,eol,start
 
 " Make searching make sense:
-" Turn on highlighted search. Use :noh to clear highlighting
-" Turn on incremental search
-" ignore case in search...
-" ... except when using upper case
+" hlsearch:   Turn on highlighted search. Use :noh to clear highlighting
+" incsearch:  Turn on incremental search
+" ignorecase: ignore case in search...
+" smarcate:   ...except when using upper case
 set hlsearch incsearch ignorecase smartcase
 
 " =============================================================================
 " New Commands
 " =============================================================================
-" Copying some from reference vimrc, but also including a bunch of my own
 
-" F9 opens .vimrc in a new window.  Change from mine of <leader>ev but makes
-" sense with having vimrc and plugins.vim
+" F9 opens .vimrc in a new window
 map <f9> :split $MYVIMRC<cr>
 " F10 opens plugins.vim in a new window
 map <f10> :execute 'sp $VIMHOME/plugins.vim'<cr>
@@ -217,6 +211,8 @@ inoremap jk <esc>
 inoremap <esc> <nop>
 
 " In visual mode, > and < will indent and then re-hightlight
+" < and >: shift the text
+" gv:      reselect last visual selection
 vnoremap > >gv
 vnoremap < <gv
 
@@ -256,35 +252,24 @@ set autoread
 
 " Jump to the last known cursor position when opening a file
 "augroup last_cursor_position
-  "autocmd!
-  "autocmd BufReadPost *
-        "\ if line("'\"") > 1 && line("'\"") <= line("$") |
-        "\     execute "normal! g`\"" |
-        "\ endif
+"autocmd!
+"autocmd BufReadPost *
+"\ if line("'\"") > 1 && line("'\"") <= line("$") |
+"\     execute "normal! g`\"" |
+"\ endif
 "augroup END
 
 " Unfold all folds by default
 "set nofoldenable
 
 " Allow the virtual cursor to move one space beyond actual text
-"set virtualedit=onemore
+set virtualedit=onemore
 
 " Toggle showing tabs and expanding tabs, in the case that the file already
 " uses tabs. Mnemonic: tt = toggle tab
 "nnoremap <leader>tt :set expandtab! list!<CR>
 
-" Remove all trailing whitespace in the file, while preserving cursor position
-"function! RemoveTrailingSpaces()
-  "let l = line('.')
-  "let c = col('.')
-  "" vint: -ProhibitCommandWithUnintendedSideEffect -ProhibitCommandRelyOnUser
-  "%s/\s\+$//e
-  "" vint: +ProhibitCommandWithUnintendedSideEffect +ProhibitCommandRelyOnUser
-  "call cursor(l, c)
-"endfunction
-
-" Enable mouse in all modes (don't overuse it)
-" Keeping this one, as I was using it already
+" Enable mouse in all modes
 set mouse=a
 
 " Make Y behavior consistent with C and D
@@ -296,13 +281,13 @@ set mouse=a
 " Use a dark colorscheme.  This should get set to dark from my color scheme
 set background=dark
 if &t_Co>=88
-	silent! colorscheme wombat256
+    silent! colorscheme wombat256
 else
-	colorscheme default
+    colorscheme default
 endif
 
 " Allow local configuration to override
 if filereadable(expand('~/.vimrc_local'))
-	source ~/.vimrc_local
+    source ~/.vimrc_local
 endif
 
