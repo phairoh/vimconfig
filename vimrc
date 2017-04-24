@@ -82,6 +82,8 @@ function! GenerateUuid()
 endfunction
 
 nnoremap <Leader>u i<C-R>=GenerateUuid()<cr><esc>
+"inoremap <C-U> <C-R>=GenerateUuid()<cr>
+"inoremap <C-I> <C-R>=GenerateUuid()<cr>
 
 " =============================================================================
 " File settings
@@ -147,6 +149,10 @@ set wildmode=longest,full
 
 " Files to ignore for wildmenu
 set wildignore=*.o,*.pyc,*.class,*.bak,*~
+
+" More natural split opening
+set splitbelow
+set splitright
 
 " =============================================================================
 " Motions

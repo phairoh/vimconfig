@@ -125,6 +125,8 @@ Plug 'tpope/vim-surround'
 " Run Neomake on buffer write
 autocmd! BufWritePost * Neomake
 
+Plug 'tpope/vim-obsession'
+
 " =============================================================================
 " Languages
 " =============================================================================
