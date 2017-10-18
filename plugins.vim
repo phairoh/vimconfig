@@ -118,6 +118,8 @@ Plug 'Ntpeters/vim-better-whitespace'
 
 Plug 'scrooloose/nerdcommenter'
 
+let g:NERDDefaultAlign = 'left'
+
 Plug 'benekastah/neomake'
 
 Plug 'tpope/vim-surround'
